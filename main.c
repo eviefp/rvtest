@@ -1,8 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int main() {
   int a, b;
-  scanf("%d%d", &a, &b);
+  srand(time(NULL));
+  a = 1 + rand() % 99;
+  b = 1 + rand() % 99;
+
+  printf("%d %d\n", a, b);
 
   while(a != b) {
     if(a > b) {
@@ -11,5 +17,5 @@ int main() {
       b = b - a;
     }
   }
-  printf("%d", a);
+  printf("%d\n", a);
 }

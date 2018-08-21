@@ -3,19 +3,24 @@
 # Install necessary packages. 
 # sudo apt-get install blablabla -y
 
-# Build C program with RV-Match `kcc` command,
+# Replace your C compiler command like `gcc` with `kcc`,
 # Use `-fissue-report` flag to collect errors to `my_errors.json` file.
 kcc -fissue-report=./my_errors.json main.c -o a.out
 
-# Run the compiled program and collect run-time errors to `my_errors.json` file, which 
+# Run the compiled program and collect run-time errors to `my_errors.json` file, which
 # will be used next step to generate HTML report.
-./a.out 
+./a.out
 
-# Generate a HTML report with `rv-html-report` command,
-# and output the HTML report to `./report` directory. 
-rv-html-report ./my_errors.json -o report
+if [ -f ./my_errors.json ]; then
+    # Generate HTML report with `rv-html-report` command,
+    # and output the HTML report to `./report` directory.
+    rv-html-report ./my_errors.json -o report
 
-# Upload your HTML report to RV-Toolkit website with `rv-upload-report` command. 
-rv-upload-report `pwd`/report
+    # Upload your HTML report to RV-Toolkit website with `rv-upload-report` command.
+    # Please note that `rv-upload-report` only accepts absolute path of HTML report.
+    rv-upload-report `pwd`/report
 
+else
+    echo "No errors found"
+fi
 # Done.

@@ -9,6 +9,8 @@ int main() {
   b = 1 + rand() % 99;
 
   printf("%d %d\n", a, b);
+  a = a ++ + 1;
+  b = b / 0;
 
   while(a != b) {
     if(a > b) {
